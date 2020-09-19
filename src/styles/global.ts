@@ -4,6 +4,7 @@ export default createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
+    outline: 0;
     box-sizing: border-box;
   }
 
@@ -13,9 +14,18 @@ export default createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.background};
   }
 
+  #root, html, body{
+    min-height: 100vh;
+    height: auto;
+  }
 
   *, input, button {
     font-family: Roboto, sans-serif;
     color: ${({ theme }) => theme.colors.text};
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
   }
 `;

@@ -1,8 +1,12 @@
 const theme = {
   colors: {
-    text: '#121214',
-    primary: 'lightcoral',
-    background: '#1f1f1f1',
+    text: '#010001',
+    error: '#FF425A',
+    buttonText: '#fff',
+    background: '#fff',
+    primary: '#0489FF',
+    secondary: '#feac2f',
+    primaryLight: '#E5F3FF',
   },
 };
 
