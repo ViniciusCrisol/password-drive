@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const LeftSide = styled.div`
   width: 50%;
-  padding: 4rem;
+  padding: 2rem;
 
   display: flex;
   align-items: center;
@@ -131,11 +131,10 @@ export const RightSide = styled.div<HashButtonProps>`
       height: 2.125rem;
       width: 8rem;
 
-      padding: 0 1rem;
       background: none;
       border: 2px solid ${({ theme }) => theme.colors.secondary};
 
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: ${({ theme }) => theme.colors.secondary};
 
       display: flex;

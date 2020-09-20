@@ -6,6 +6,7 @@ import { FiKey, FiLock, FiInfo, FiShield, FiShieldOff } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';
 
+import Logo from '../../../../components/Logo';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
@@ -40,6 +41,7 @@ const pages: React.FC = () => {
   return (
     <Container>
       <LeftSide>
+        <Logo />
         <Form onSubmit={handleSignIn} ref={formRef}>
           <Input icon={FiKey} name="code" placeholder="Code" />
           <Input

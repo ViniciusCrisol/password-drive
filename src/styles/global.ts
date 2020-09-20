@@ -12,6 +12,10 @@ export default createGlobalStyle`
     font-size: 16px;
     -webkit-font-smoothing: antialiased !important;
     background-color: ${({ theme }) => theme.colors.background};
+
+    @media(max-width: 500px){
+      font-size: 14px;
+    }
   }
 
   #root, html, body{
