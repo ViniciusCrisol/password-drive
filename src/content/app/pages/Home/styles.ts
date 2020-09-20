@@ -5,7 +5,7 @@ interface HashButtonProps {
 }
 
 export const Container = styled.div`
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   align-items: center;
@@ -38,6 +38,7 @@ export const LeftSide = styled.div`
     opacity: 0.5;
     cursor: pointer;
     font-size: 1.125rem;
+    text-decoration: none;
 
     display: flex;
     align-items: center;
@@ -81,7 +82,7 @@ export const LeftSide = styled.div`
 
 export const RightSide = styled.div<HashButtonProps>`
   width: 50%;
-  height: 100%;
+  height: 100vh;
 
   padding: 2.5rem;
   background: ${({ theme }) => theme.colors.secondary};
@@ -95,8 +96,8 @@ export const RightSide = styled.div<HashButtonProps>`
     width: 90%;
     position: relative;
 
-    padding: 4rem 2rem;
     background: white;
+    padding: 4rem 2rem;
     border-radius: 4px;
 
     display: flex;

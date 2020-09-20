@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import crypto from 'crypto-random-string';
+import Link from 'next/link';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiKey, FiLock, FiInfo, FiShield, FiShieldOff } from 'react-icons/fi';
@@ -17,7 +18,7 @@ interface SignData {
   password: string;
 }
 
-const pages: React.FC = () => {
+const Home: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const hashRef = useRef<HTMLInputElement>(null);
 
@@ -51,15 +52,21 @@ const pages: React.FC = () => {
             placeholder="Password"
           />
 
-          <a>
-            <FiInfo size={20} />
-            Forgot Password
-          </a>
+          <Link href="/register">
+            <a>
+              <FiInfo size={20} />
+              Forgot Password
+            </a>
+          </Link>
 
-          <Button type="submit">Entrar</Button>
+          <Button type="submit">Access</Button>
         </Form>
 
-        <a className="create-account">Don't have an account? Create a here.</a>
+        <Link href="/register">
+          <a className="create-account">
+            Don't have an account? Create a here.
+          </a>
+        </Link>
       </LeftSide>
 
       <RightSide copied={copied}>
@@ -84,4 +91,4 @@ const pages: React.FC = () => {
   );
 };
 
-export default pages;
+export default Home;
