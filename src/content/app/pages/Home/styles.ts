@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface HashButtonProps {
+  copied: boolean;
+}
 
 export const Container = styled.div`
   height: 100vh;
@@ -75,7 +79,7 @@ export const LeftSide = styled.div`
   }
 `;
 
-export const RightSide = styled.div`
+export const RightSide = styled.div<HashButtonProps>`
   width: 50%;
   height: 100%;
 
@@ -88,7 +92,8 @@ export const RightSide = styled.div`
   justify-content: center;
 
   div {
-    width: 80%;
+    width: 90%;
+    position: relative;
 
     padding: 4rem 2rem;
     background: white;
@@ -98,28 +103,75 @@ export const RightSide = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    h1 {
-      font-size: 1.625rem;
-      color: ${({ theme }) => theme.colors.secondary};
+    input {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: 100%;
+
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    section {
+      h1 {
+        font-size: 1.625rem;
+        color: ${({ theme }) => theme.colors.secondary};
+      }
+
+      span {
+        opacity: 0.5;
+        font-size: 0.9rem;
+      }
     }
 
     button {
       height: 2.125rem;
+      width: 8rem;
 
       padding: 0 1rem;
       background: none;
       border: 2px solid ${({ theme }) => theme.colors.secondary};
 
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: ${({ theme }) => theme.colors.secondary};
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       transition: color 200ms, transform 200ms, border 200ms;
 
+      svg {
+        margin-right: 1rem;
+        stroke: ${({ theme }) => theme.colors.secondary};
+
+        transition: stroke 200ms;
+      }
+
       &:hover {
-        transform: translateY(-4px);
+        transform: scale(1.02);
         color: ${({ theme }) => theme.colors.primary};
         border-color: ${({ theme }) => theme.colors.primary};
+
+        svg {
+          stroke: ${({ theme }) => theme.colors.primary};
+        }
       }
+
+      ${({ copied }) =>
+        copied &&
+        css`
+          color: ${({ theme }) => theme.colors.success};
+          border-color: ${({ theme }) => theme.colors.success};
+
+          svg {
+            display: block;
+            stroke: ${({ theme }) => theme.colors.success};
+          }
+        `}
     }
   }
 
