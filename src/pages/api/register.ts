@@ -12,9 +12,7 @@ async function connectToDatabse(uri: string) {
   });
 
   const dbName = url.parse(uri).pathname.substr(1);
-
   const db = client.db(dbName);
-
   cachedDb = db;
 
   return db;
