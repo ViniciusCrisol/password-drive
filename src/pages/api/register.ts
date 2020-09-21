@@ -37,7 +37,7 @@ export default async (request: NowRequest, response: NowResponse) => {
       return response.status(401).json({ message: 'Code already in use.' });
     }
 
-    const hashedPassword = await hash(password, 8);
+    const hashedPassword = await hash(password, 12);
 
     const user = await collection.insertOne({
       code: code.trim().toLowerCase(),

@@ -14,11 +14,6 @@ import Button from '../../../../components/Button';
 
 import { Container, LeftSide, RightSide } from './styles';
 
-interface SignData {
-  code: string;
-  password: string;
-}
-
 const Home: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const hashRef = useRef<HTMLInputElement>(null);
