@@ -22,9 +22,9 @@ const Register: React.FC = () => {
 
   const handleSignIn = useCallback(async (data: SignData) => {
     try {
-      const user = await axios.post('/api/register', data);
+      const response = await axios.post('/api/register', data);
 
-      console.log(user);
+      console.log(response);
     } catch (err) {
       console.log(err.response.data.message);
     }

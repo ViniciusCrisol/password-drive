@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import crypto from 'crypto-random-string';
+import axios from 'axios';
 import Link from 'next/link';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -25,8 +26,14 @@ const Home: React.FC = () => {
   const [hash, setHash] = useState(crypto(hashConfig));
   const [copied, setCopied] = useState(false);
 
-  const handleSignIn = useCallback((data: SignData) => {
-    console.log(data);
+  const handleSignIn = useCallback(async (data: SignData) => {
+    try {
+      const response = await axios.post('/api/login', data);
+
+      console.log(response);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
   }, []);
 
   const handleGenerateHash = useCallback(() => {
