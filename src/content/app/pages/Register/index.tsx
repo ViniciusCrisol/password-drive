@@ -1,10 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
+import axios from 'axios';
 import Link from 'next/link';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiKey, FiLock, FiUser } from 'react-icons/fi';
-
-import hashConfig from '../../../../config/hashConfig';
 
 import Logo from '../../../../components/Logo';
 import Input from '../../../../components/Input';
@@ -13,14 +12,22 @@ import { Container, LeftSide, RightSide, Button } from './styles';
 
 interface SignData {
   code: string;
+  name?: string;
   password: string;
+  confirm_password: string;
 }
 
 const Register: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSignIn = useCallback((data: SignData) => {
-    console.log(data);
+  const handleSignIn = useCallback(async (data: SignData) => {
+    try {
+      const user = await axios.post('/api/register', data);
+
+      console.log(user);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
   }, []);
 
   return (
@@ -49,8 +56,8 @@ const Register: React.FC = () => {
 
           <Input
             icon={FiLock}
+            type="password"
             name="confirm_password"
-            type="confirm_password"
             placeholder="Confirm password"
           />
 
