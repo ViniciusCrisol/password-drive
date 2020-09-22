@@ -25,4 +25,8 @@ export const Container = styled.button<ButtonProps>`
   &:hover {
     background: ${({ theme }) => darken(0.06, theme.colors.primary)};
   }
+
+  &:disabled {
+    background: ${({ theme }) => theme.colors.primaryLight};
+  }
 `;

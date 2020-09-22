@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiKey, FiLock, FiUser } from 'react-icons/fi';
@@ -10,7 +11,7 @@ import Input from '../../../../components/Input';
 
 import { Container, LeftSide, RightSide, Button } from './styles';
 
-interface SignData {
+interface SignUpData {
   code: string;
   name?: string;
   password: string;
@@ -18,13 +19,16 @@ interface SignData {
 }
 
 const Register: React.FC = () => {
+  const router = useRouter();
   const formRef = useRef<FormHandles>(null);
 
-  const handleSignIn = useCallback(async (data: SignData) => {
-    try {
-      const response = await axios.post('/api/register', data);
+  const [loading, setLoading] = useState(false);
 
-      console.log(response);
+  const handleSignIn = useCallback(async (data: SignUpData) => {
+    try {
+      await axios.post('/api/register', data);
+
+      router.push('/');
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -61,7 +65,9 @@ const Register: React.FC = () => {
             placeholder="Confirm password"
           />
 
-          <Button type="submit">Register</Button>
+          <Button loading={loading} type="submit">
+            Register
+          </Button>
         </Form>
 
         <Link href="/">

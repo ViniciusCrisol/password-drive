@@ -8,6 +8,8 @@ import { FiKey, FiLock, FiInfo, FiShield, FiShieldOff } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';
 
+import { useUser } from '../../../../hooks/useUser';
+
 import Logo from '../../../../components/Logo';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
@@ -15,6 +17,8 @@ import Button from '../../../../components/Button';
 import { Container, LeftSide, RightSide } from './styles';
 
 const Home: React.FC = () => {
+  const { signIn } = useUser();
+
   const formRef = useRef<FormHandles>(null);
   const hashRef = useRef<HTMLInputElement>(null);
 
@@ -22,13 +26,7 @@ const Home: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const handleSignIn = useCallback(async (data: SignData) => {
-    try {
-      const response = await axios.post('/api/login', data);
-
-      console.log(response);
-    } catch (err) {
-      console.log(err.response.data.message);
-    }
+    signIn(data);
   }, []);
 
   const handleGenerateHash = useCallback(() => {

@@ -39,14 +39,14 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     const hashedPassword = await hash(password, 12);
 
-    const user = await collection.insertOne({
+    await collection.insertOne({
       code: code.trim().toLowerCase(),
       name: name.trim().toLowerCase(),
       password: hashedPassword,
       created_at: new Date(),
     });
 
-    return response.status(200).json(user.ops[0]);
+    return response.status(204).json({ ok: true });
   } catch (err) {
     return response.status(400).json({ message: 'Error, try again.' });
   }

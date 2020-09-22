@@ -18,7 +18,7 @@ const UserProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<UserType | null>(null);
 
   const signIn = useCallback(async ({ code, password }: SignData) => {
-    const response = await axios.post('/api/sessions', { code, password });
+    const response = await axios.post('/api/login', { code, password });
     const { token, name } = response.data;
 
     axios.defaults.headers.authorization = `Bearer ${token}`;
