@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
 import crypto from 'crypto-random-string';
-import axios from 'axios';
 import Link from 'next/link';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
