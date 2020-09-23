@@ -9,7 +9,7 @@ export const Container = styled.div`
   padding: 2rem 2rem 4rem;
 `;
 
-export const Banner = styled.div`
+export const Banner = styled.nav`
   height: 4rem;
   background: ${({ theme }) => theme.colors.primary};
 
@@ -47,6 +47,42 @@ export const Banner = styled.div`
           color: ${({ theme }) => theme.colors.buttonText};
         }
       }
+    }
+  }
+`;
+
+export const GenerateHashArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    flex: 1;
+    height: 3.125rem;
+
+    padding: 0 0.5rem;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
+    border-right: none;
+
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  button {
+    width: 3.125rem;
+    height: 3.125rem;
+
+    background: white;
+
+    border-radius: 0;
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
+    border-left: none;
+
+    & + button {
+      width: 6.25rem;
+
+      border-radius: 0 4px 4px 0;
     }
   }
 `;
