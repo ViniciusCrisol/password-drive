@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 1040px;
-  min-height: calc(100vh - 8rem);
+  max-width: 48rem;
+  min-height: calc(100vh - 4rem);
 
   margin: 0 auto;
   padding: 2rem 2rem 4rem;
@@ -16,7 +17,7 @@ export const Banner = styled.nav`
   main {
     width: 100%;
     height: 100%;
-    max-width: 1040px;
+    max-width: 48rem;
 
     margin: 0 auto;
     padding: 0 2rem;
@@ -52,37 +53,38 @@ export const Banner = styled.nav`
 `;
 
 export const GenerateHashArea = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: sticky;
+  top: 0;
 
-  input {
-    flex: 1;
-    height: 3.125rem;
+  width: 100%;
 
-    padding: 0 0.5rem;
-    border-radius: 4px 0 0 4px;
-    border: 2px solid ${({ theme }) => theme.colors.secondary};
-    border-right: none;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  background: ${({ theme }) => theme.colors.background};
+  border: 2px solid ${({ theme }) => theme.colors.text}40;
 
-    font-size: 1.2rem;
-    color: ${({ theme }) => theme.colors.primary};
-  }
+  form {
+    margin: 0 auto;
+    max-width: 48rem;
 
-  button {
-    width: 3.125rem;
-    height: 3.125rem;
+    span {
+      opacity: 0.5;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: ${({ theme }) => theme.colors.text};
+    }
 
-    background: white;
+    button {
+      margin-top: 0.5rem;
+      background: ${({ theme }) => theme.colors.primary};
+    }
 
-    border-radius: 0;
-    border: 2px solid ${({ theme }) => theme.colors.secondary};
-    border-left: none;
+    div {
+      border-color: ${({ theme }) => theme.colors.primary};
 
-    & + button {
-      width: 6.25rem;
-
-      border-radius: 0 4px 4px 0;
+      svg {
+        stroke: ${({ theme }) => theme.colors.primary};
+      }
     }
   }
 `;

@@ -3,13 +3,15 @@ import Link from 'next/link';
 import crypto from 'crypto-random-string';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { FiLink2, FiShield } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';
 
+import Input from '../../../../components/Input';
 import ActiveLink from '../../../../components/Link';
 
 import { Container, Banner, GenerateHashArea } from './styles';
-import { FiEyeOff } from 'react-icons/fi';
+import Button from '../../../../components/Button';
 
 const Dashboard: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -47,22 +49,21 @@ const Dashboard: React.FC = () => {
       </Banner>
 
       <Container>
-        <div>
-          <GenerateHashArea>
-            <input
-              type={showHash ? 'text' : 'password'}
-              readOnly
-              ref={hashRef}
-              value={hash}
-            />
+        <GenerateHashArea>
+          <Form
+            onSubmit={data => console.log(data)}
+            ref={formRef}
+            initialData={{ hash: crypto(hashConfig) }}
+          >
+            <span>Register a new hash</span>
+            <Input placeholder="Website name" icon={FiLink2} name="name" />
+            <div>
+              <Input readOnly name="hash" type="password" icon={FiShield} />
+            </div>
 
-            <button onClick={handleTogleHash}>
-              <FiEyeOff size={20} />
-            </button>
-
-            <button>Hash!</button>
-          </GenerateHashArea>
-        </div>
+            <Button type="submit">Create Register</Button>
+          </Form>
+        </GenerateHashArea>
       </Container>
     </>
   );
