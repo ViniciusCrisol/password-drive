@@ -34,7 +34,7 @@ export default async (request: NowRequest, response: NowResponse) => {
         .json({ message: 'Code/Password combination failed.' });
     }
 
-    const passwordMatches = await compare(password, user.password);
+    const passwordMatches = await compare(password.trim(), user.password);
 
     if (!passwordMatches) {
       return response
