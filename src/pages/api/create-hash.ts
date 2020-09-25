@@ -44,6 +44,15 @@ export default async (request: NowRequest, response: NowResponse) => {
       return response.status(401).json({ message: 'User does not exists.' });
     }
 
+    const foundedHash = hashesCollection.findOne({
+      user_id: userExists._id,
+      website: website.trim().toLowerCase(),
+    });
+
+    if (foundedHash) {
+      return response.status(401).json({ message: 'Website already hashed.' });
+    }
+
     const hashedPassword = await hash(password.trim(), 12);
 
     await hashesCollection.insertOne({
