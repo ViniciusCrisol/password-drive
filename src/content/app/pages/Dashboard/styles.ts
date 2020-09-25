@@ -105,6 +105,7 @@ export const GenerateHashArea = styled.div`
 
         margin-top: 0;
         background: none;
+        border-radius: 0;
 
         border: 2px solid ${({ theme }) => theme.colors.primary};
         border-left: 0;
