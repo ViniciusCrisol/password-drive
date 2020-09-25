@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
   const handleGenerateHash = useCallback(() => {
     const generatedHash = crypto(hashConfig);
 
-    formRef.current.setFieldValue('hash', generatedHash);
+    formRef.current.setFieldValue('password', generatedHash);
   }, [crypto, formRef]);
 
   const handleTogleHash = useCallback(() => {
@@ -59,7 +59,7 @@ const Dashboard: React.FC = () => {
           <Form
             ref={formRef}
             onSubmit={data => handleSubmitForm(data)}
-            initialData={{ hash: crypto(hashConfig) }}
+            initialData={{ password: crypto(hashConfig) }}
           >
             <span>Register a new hash</span>
             <Input placeholder="Website name" icon={FiLink2} name="website" />
