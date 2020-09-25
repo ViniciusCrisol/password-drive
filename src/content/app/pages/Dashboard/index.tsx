@@ -23,16 +23,13 @@ const Dashboard: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const [showHash, setShowHash] = useState(false);
 
-  const handleSubmitForm = useCallback(
-    async (data: CreateHashData) => {
-      try {
-        await axios.post('/api/create-hash', data);
-      } catch (err) {
-        console.log(err.response.data.message);
-      }
-    },
-    [axios]
-  );
+  const handleSubmitForm = useCallback(async (data: CreateHashData) => {
+    try {
+      await axios.post('/api/create-hash', data);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  }, []);
 
   const handleGenerateHash = useCallback(() => {
     const generatedHash = crypto(hashConfig);
