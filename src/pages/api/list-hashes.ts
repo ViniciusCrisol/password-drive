@@ -20,14 +20,13 @@ async function connectToDatabse(uri: string) {
 }
 
 export default async (request: NowRequest, response: NowResponse) => {
-  const { website, password } = request.body;
   const { authorization } = request.headers;
 
   const token = authorization.split(' ')[1];
 
   const userId = decode(token).sub;
 
-  if (!website || !password || !userId) {
+  if (!userId) {
     return response.status(401).json({ message: 'Validation fails.' });
   }
 
@@ -44,27 +43,24 @@ export default async (request: NowRequest, response: NowResponse) => {
       return response.status(401).json({ message: 'User does not exists.' });
     }
 
-    const foundedHash = await hashesCollection.findOne({
-      user_id: userExists._id,
-      website: website.trim().toLowerCase(),
+    const hashes = hashesCollection.find({
+      user_id: new ObjectID(userId),
     });
-
-    if (foundedHash) {
-      return response.status(401).json({ message: 'Website already hashed.' });
-    }
 
     const cryptr = new Cryptr(process.env.HASH_KEY);
 
-    const hashedPassword = cryptr.encrypt(password.trim());
+    const serializedHashes = hashes.map(hash => {
+      const { created_at, website, hash: password, _id } = hash;
 
-    await hashesCollection.insertOne({
-      hash: hashedPassword,
-      website: website.trim().toLowerCase(),
-      user_id: userExists._id,
-      created_at: new Date(),
+      return {
+        id: _id,
+        website,
+        created_at,
+        password: cryptr.decrypt(password),
+      };
     });
 
-    return response.status(204).json({ ok: true });
+    return response.status(204).json(serializedHashes);
   } catch (err) {
     return response.status(400).json({ message: 'Error, try again.' });
   }

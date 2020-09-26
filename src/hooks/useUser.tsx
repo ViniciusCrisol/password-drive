@@ -1,5 +1,12 @@
-import React, { createContext, useState, useCallback, useContext } from 'react';
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  useContext,
+  useEffect,
+} from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 interface UserContextData {
   user?: UserType;
@@ -16,6 +23,11 @@ const UserContext = createContext<UserContextData>({} as UserContextData);
 
 const UserProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<UserType | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch('/dashboard');
+  }, []);
 
   const signIn = useCallback(async ({ code, password }: SignData) => {
     const response = await axios.post('/api/login', { code, password });

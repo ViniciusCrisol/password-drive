@@ -11,7 +11,7 @@ const Register: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      // router.push('/dashboard');
+      router.push('/dashboard', { auth: user.token });
     }
   }, [user, router]);
 

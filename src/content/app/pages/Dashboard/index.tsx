@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import crypto from 'crypto-random-string';
@@ -40,6 +40,19 @@ const Dashboard: React.FC = () => {
   const handleTogleHash = useCallback(() => {
     setShowHash(prevState => !prevState);
   }, [showHash]);
+
+  // useEffect(() => {
+  //   async function getInitialData() {
+  //     try {
+  //       const response = await axios.post('/api/list-hashes');
+
+  //       console.log(response.data);
+  //     } catch (err) {
+  //       console.log(err.response.data.message);
+  //     }
+  //   }
+  //   getInitialData();
+  // }, []);
 
   return (
     <>
