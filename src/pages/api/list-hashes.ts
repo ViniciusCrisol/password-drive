@@ -1,7 +1,8 @@
 import { NowRequest, NowResponse } from '@vercel/node';
 import { MongoClient, Db, ObjectID } from 'mongodb';
 import { decode } from 'jsonwebtoken';
-import Cryptr from 'cryptr';
+import crypto from 'crypto';
+
 import url from 'url';
 
 let cachedDb: Db = null;
@@ -43,25 +44,27 @@ export default async (request: NowRequest, response: NowResponse) => {
       return response.status(401).json({ message: 'User does not exists.' });
     }
 
-    const hashes = hashesCollection.find({
-      user_id: new ObjectID(userId),
-    });
+    const hashes = await hashesCollection
+      .find({ user_id: new ObjectID(userId) })
+      .toArray();
 
-    const cryptr = new Cryptr(process.env.HASH_KEY);
+    const serializedHashes = hashes.map(siteHash => {
+      const { created_at, website, _id, hash } = siteHash;
 
-    const serializedHashes = hashes.map(hash => {
-      const { created_at, website, hash: password, _id } = hash;
+      const decipher = crypto.createDecipher('aes256', 'chaves');
+      decipher.update(hash, 'hex');
 
       return {
-        id: _id,
         website,
+        id: _id,
         created_at,
-        password: cryptr.decrypt(password),
+        password: decipher.final('utf8'),
       };
     });
 
-    return response.status(204).json(serializedHashes);
+    return response.json(serializedHashes);
   } catch (err) {
+    console.log(err);
     return response.status(400).json({ message: 'Error, try again.' });
   }
 };

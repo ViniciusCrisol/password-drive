@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import Cryptr from 'cryptr';
 import crypto from 'crypto-random-string';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -41,18 +42,19 @@ const Dashboard: React.FC = () => {
     setShowHash(prevState => !prevState);
   }, [showHash]);
 
-  // useEffect(() => {
-  //   async function getInitialData() {
-  //     try {
-  //       const response = await axios.post('/api/list-hashes');
+  useEffect(() => {
+    async function getInitialData() {
+      try {
+        const response = await axios.get('/api/list-hashes');
 
-  //       console.log(response.data);
-  //     } catch (err) {
-  //       console.log(err.response.data.message);
-  //     }
-  //   }
-  //   getInitialData();
-  // }, []);
+        console.log(response.data);
+      } catch (err) {
+        console.log(err.response.data.message);
+      }
+    }
+
+    getInitialData();
+  }, []);
 
   return (
     <>

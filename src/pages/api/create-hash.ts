@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node';
 import { MongoClient, Db, ObjectID } from 'mongodb';
 import { decode } from 'jsonwebtoken';
-import Cryptr from 'cryptr';
+import crypto from 'crypto';
 import url from 'url';
 
 let cachedDb: Db = null;
@@ -53,12 +53,11 @@ export default async (request: NowRequest, response: NowResponse) => {
       return response.status(401).json({ message: 'Website already hashed.' });
     }
 
-    const cryptr = new Cryptr(process.env.HASH_KEY);
-
-    const hashedPassword = cryptr.encrypt(password.trim());
+    const cipher = crypto.createCipher('aes256', 'chaves');
+    cipher.update(password.trim());
 
     await hashesCollection.insertOne({
-      hash: hashedPassword,
+      hash: cipher.final('hex'),
       website: website.trim().toLowerCase(),
       user_id: userExists._id,
       created_at: new Date(),
@@ -66,6 +65,7 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     return response.status(204).json({ ok: true });
   } catch (err) {
+    console.log(err);
     return response.status(400).json({ message: 'Error, try again.' });
   }
 };
