@@ -29,13 +29,14 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  console.log(params);
+
   try {
     const response = await axios.post('/api/list-hashes');
-
-    console.log(response.data);
+    // console.log(response.data);
   } catch (err) {
-    console.log(err.response.data);
+    // console.log(err.response.data);
   }
 
   return { props: { ok: true } };

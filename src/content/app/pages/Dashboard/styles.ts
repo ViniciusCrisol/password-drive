@@ -59,9 +59,7 @@ export const GenerateHashArea = styled.div`
   width: 100%;
 
   padding: 2rem 1rem;
-  border-radius: 0.5rem;
   background: ${({ theme }) => theme.colors.background};
-  border: 2px solid ${({ theme }) => theme.colors.text}25;
 
   form {
     margin: 0 auto;
