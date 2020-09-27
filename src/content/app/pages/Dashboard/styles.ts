@@ -7,7 +7,7 @@ export const Container = styled.div`
   min-height: calc(100vh - 4rem);
 
   margin: 0 auto;
-  padding: 2rem 2rem 4rem;
+  padding: 2rem;
 `;
 
 export const GenerateHashArea = styled.div`
@@ -16,12 +16,15 @@ export const GenerateHashArea = styled.div`
 
   width: 100%;
 
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 0;
   background: ${({ theme }) => theme.colors.background};
 
   form {
     margin: 0 auto;
     max-width: 48rem;
+
+    padding-bottom: 1rem;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.secondary};
 
     span {
       opacity: 0.5;
@@ -95,4 +98,6 @@ export const GenerateHashArea = styled.div`
   }
 `;
 
-export const HashList = styled.div``;
+export const HashList = styled.div`
+  padding: 2rem 1rem;
+`;

@@ -2,7 +2,11 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const Hash: React.FC = () => {
+interface HashData {
+  hash: Hash;
+}
+
+const Hash: React.FC<HashData> = ({ hash }) => {
   return (
     <Container>
       <h1>Hash</h1>

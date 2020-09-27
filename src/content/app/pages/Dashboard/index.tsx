@@ -13,18 +13,13 @@ import Layout from '../../components/Layout';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
+import Hash from './Hash';
+
 import { Container, GenerateHashArea, HashList } from './styles';
 
 interface CreateHashData {
   website: string;
   password: string;
-}
-
-interface Hash {
-  id: string;
-  website: string;
-  password: string;
-  created_at: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -89,7 +84,7 @@ const Dashboard: React.FC = () => {
 
         <HashList>
           {hashes.map(hash => (
-            <h1>{hash.website}</h1>
+            <Hash hash={hash} />
           ))}
         </HashList>
       </Container>
