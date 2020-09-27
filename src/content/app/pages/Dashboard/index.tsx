@@ -1,5 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react';
-
+import React, { useCallback, useRef, useState } from 'react';
 import axios from 'axios';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -23,7 +22,7 @@ interface CreateHashData {
 }
 
 const Dashboard: React.FC = () => {
-  const { data: hashes, mutate } = useFetch<Hash[]>('/api/list-hashes');
+  const { data: hashes } = useFetch<Hash[]>('/api/list-hashes');
   const [showHash, setShowHash] = useState(false);
 
   const formRef = useRef<FormHandles>(null);
@@ -64,6 +63,7 @@ const Dashboard: React.FC = () => {
 
             <section>
               <Input
+                maxLength={16}
                 name="password"
                 icon={FiShield}
                 type={showHash ? 'text' : 'password'}
@@ -84,7 +84,13 @@ const Dashboard: React.FC = () => {
 
         <HashList>
           {hashes.map(hash => (
-            <Hash hash={hash} />
+            <Hash key={hash.id} hash={hash} />
+          ))}
+          {hashes.map(hash => (
+            <Hash key={hash.id} hash={hash} />
+          ))}
+          {hashes.map(hash => (
+            <Hash key={hash.id} hash={hash} />
           ))}
         </HashList>
       </Container>

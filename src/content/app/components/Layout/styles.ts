@@ -10,7 +10,7 @@ export const Header = styled.header`
     max-width: 48rem;
 
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
 
     display: flex;
     align-items: center;

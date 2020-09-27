@@ -23,6 +23,7 @@ export const Container = styled.div<ContainerProps>`
   svg {
     stroke: ${({ theme }) => theme.colors.primary};
     transition: stroke 100ms;
+    flex-shrink: 0;
   }
 
   & + div {
