@@ -1,5 +1,4 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
-import Link from 'next/link';
 
 import axios from 'axios';
 import { Form } from '@unform/web';
@@ -8,21 +7,31 @@ import crypto from 'crypto-random-string';
 import { FiLink2, FiShield, FiEye, FiEyeOff } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';
+import { useFetch } from '../../../../hooks/useFetch';
 
+import Layout from '../../components/Layout';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
-import ActiveLink from '../../../../components/Link';
 
-import { Container, Header, GenerateHashArea } from './styles';
+import { Container, GenerateHashArea, HashList } from './styles';
 
 interface CreateHashData {
-  password: string;
   website: string;
+  password: string;
+}
+
+interface Hash {
+  id: string;
+  website: string;
+  password: string;
+  created_at: string;
 }
 
 const Dashboard: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
+  const { data: hashes, mutate } = useFetch<Hash[]>('/api/list-hashes');
   const [showHash, setShowHash] = useState(false);
+
+  const formRef = useRef<FormHandles>(null);
 
   const handleSubmitForm = useCallback(async (data: CreateHashData) => {
     try {
@@ -42,33 +51,12 @@ const Dashboard: React.FC = () => {
     setShowHash(prevState => !prevState);
   }, [showHash]);
 
-  useEffect(() => {
-    async function getInitialData() {
-      try {
-        const response = await axios.get('/api/list-hashes');
-
-        console.log(response.data);
-      } catch (err) {
-        console.log(err.response.data.message);
-      }
-    }
-
-    getInitialData();
-  }, []);
+  if (!hashes) {
+    return <h1>loading...</h1>;
+  }
 
   return (
-    <>
-      <Header>
-        <main>
-          <Link href="/dashboard">
-            <h1>Keep it safe.</h1>
-          </Link>
-          <section>
-            <ActiveLink href="/dashboard">Account</ActiveLink>
-          </section>
-        </main>
-      </Header>
-
+    <Layout>
       <Container>
         <GenerateHashArea>
           <Form
@@ -85,18 +73,27 @@ const Dashboard: React.FC = () => {
                 icon={FiShield}
                 type={showHash ? 'text' : 'password'}
               />
-              <button onClick={handleTogleHash}>
+
+              <button type="button" onClick={handleTogleHash}>
                 {showHash ? <FiEyeOff size={19} /> : <FiEye size={19} />}
               </button>
 
-              <button onClick={handleGenerateHash}>Hash!</button>
+              <button type="button" onClick={handleGenerateHash}>
+                Hash!
+              </button>
             </section>
 
             <Button type="submit">Create Register</Button>
           </Form>
         </GenerateHashArea>
+
+        <HashList>
+          {hashes.map(hash => (
+            <h1>{hash.website}</h1>
+          ))}
+        </HashList>
       </Container>
-    </>
+    </Layout>
   );
 };
 
