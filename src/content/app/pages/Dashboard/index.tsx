@@ -1,10 +1,10 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
-import Cryptr from 'cryptr';
-import crypto from 'crypto-random-string';
+
+import axios from 'axios';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import crypto from 'crypto-random-string';
 import { FiLink2, FiShield, FiEye, FiEyeOff } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';

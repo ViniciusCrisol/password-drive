@@ -30,18 +30,44 @@ const UserProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async ({ code, password }: SignData) => {
-    const response = await axios.post('/api/login', { code, password });
-    const { token, name } = response.data;
+    try {
+      const response = await axios.post('/api/login', { code, password });
+      const { token, name } = response.data;
 
-    axios.defaults.headers.authorization = `Bearer ${token}`;
+      axios.defaults.headers.authorization = `Bearer ${token}`;
 
-    setData({ token, name });
+      router.push('/dashboard');
+      setData({ token, name });
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.clear();
     setData(null);
   }, []);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (data === null) {
+        if (router.pathname !== '/register' && router.pathname !== '/') {
+          window.location.href = '/';
+        }
+      }
+    };
+
+    if (data === null) {
+      if (router.pathname !== '/register' && router.pathname !== '/') {
+        window.location.href = '/';
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [data]);
 
   return (
     <UserContext.Provider
@@ -56,10 +82,10 @@ const UserProvider: React.FC = ({ children }) => {
   );
 };
 
-function useUser(): UserContextData {
+function useAuth(): UserContextData {
   const context = useContext(UserContext);
 
   return context;
 }
 
-export { UserProvider, useUser };
+export { UserProvider, useAuth };

@@ -49,8 +49,6 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     return response.status(200).json({ name: user.name, token });
   } catch (err) {
-    console.log(err);
-
     return response.status(400).json({ message: 'Error, try again.' });
   }
 };

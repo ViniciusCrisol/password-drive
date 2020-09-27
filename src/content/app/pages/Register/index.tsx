@@ -1,7 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import axios from 'axios';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiKey, FiLock, FiUser } from 'react-icons/fi';

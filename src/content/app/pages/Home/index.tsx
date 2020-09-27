@@ -1,13 +1,14 @@
 import React, { useCallback, useRef, useState } from 'react';
-import crypto from 'crypto-random-string';
 import Link from 'next/link';
+
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import crypto from 'crypto-random-string';
 import { FiKey, FiLock, FiInfo, FiShield, FiShieldOff } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';
 
-import { useUser } from '../../../../hooks/useUser';
+import { useAuth } from '../../../../hooks/useAuth';
 
 import Logo from '../../../../components/Logo';
 import Input from '../../../../components/Input';
@@ -16,7 +17,7 @@ import Button from '../../../../components/Button';
 import { Container, LeftSide, RightSide } from './styles';
 
 const Home: React.FC = () => {
-  const { signIn } = useUser();
+  const { signIn } = useAuth();
 
   const formRef = useRef<FormHandles>(null);
   const hashRef = useRef<HTMLInputElement>(null);

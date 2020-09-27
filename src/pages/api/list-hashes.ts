@@ -64,7 +64,6 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     return response.json(serializedHashes);
   } catch (err) {
-    console.log(err);
     return response.status(400).json({ message: 'Error, try again.' });
   }
 };
