@@ -28,11 +28,11 @@ const Hash: React.FC<HashData> = ({ hash }) => {
       `/api/list-hashes`,
       (prevState: Hash[]) =>
         prevState.filter(prevHash => prevHash.id !== hash.id),
-      true
+      false
     );
 
     await axios.post('/api/delete-hash', { id: hash.id });
-  }, []);
+  }, [mutateGlobal]);
 
   return (
     <Container>
