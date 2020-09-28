@@ -85,7 +85,8 @@ export const LeftSide = styled.div`
     width: max-content;
 
     padding: 2rem;
-    background: white;
+    background:   background: ${({ theme }) => theme.colors.background};
+;
     border-radius: 4px;
 
     h1 {

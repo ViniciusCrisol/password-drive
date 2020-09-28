@@ -13,7 +13,7 @@ export const Container = styled.div<ContainerProps>`
   padding: 0 1rem;
   border-radius: 4px;
   border: 2px solid ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.background};
 
   display: flex;
   align-items: center;

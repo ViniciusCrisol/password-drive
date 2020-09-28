@@ -96,7 +96,8 @@ export const RightSide = styled.div<HashButtonProps>`
     width: 90%;
     position: relative;
 
-    background: white;
+    background:   background: ${({ theme }) => theme.colors.background};
+;
     padding: 4rem 2rem;
     border-radius: 4px;
 

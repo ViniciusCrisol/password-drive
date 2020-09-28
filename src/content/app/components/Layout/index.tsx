@@ -12,6 +12,7 @@ const Layout: React.FC = ({ children }) => (
         <Link href="/dashboard">
           <h1>Keep it safe.</h1>
         </Link>
+
         <section>
           <ActiveLink href="/dashboard">Account</ActiveLink>
         </section>

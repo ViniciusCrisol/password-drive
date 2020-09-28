@@ -1,9 +1,10 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import { FiShield, FiEyeOff, FiEye } from 'react-icons/fi';
+import { FiShield, FiEyeOff, FiEye, FiEdit2, FiTrash2 } from 'react-icons/fi';
 
 import Input from '../../../../../components/Input';
+import Button from '../../../../../components/Button';
 
 import { Container } from './styles';
 
@@ -44,7 +45,7 @@ const Hash: React.FC<HashData> = ({ hash }) => {
           initialData={{ password: hash.password }}
         >
           <Input
-            readOnly
+            readOnly={false}
             maxLength={16}
             name="password"
             icon={FiShield}
@@ -60,6 +61,16 @@ const Hash: React.FC<HashData> = ({ hash }) => {
           </button>
         </Form>
       </div>
+
+      <section>
+        <button type="button">
+          <FiEdit2 size={19} />
+        </button>
+
+        <button type="button">
+          <FiTrash2 size={19} />
+        </button>
+      </section>
 
       <input type="text" readOnly ref={passwordValue} value={hash.password} />
     </Container>

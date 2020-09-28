@@ -8,7 +8,8 @@ export const Container = styled.div`
   > div {
     width: 12px;
     height: 12px;
-    background-color: white;
+    background:   background: ${({ theme }) => theme.colors.background};
+;
 
     border-radius: 100%;
     display: inline-block;

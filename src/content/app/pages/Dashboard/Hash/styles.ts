@@ -5,7 +5,7 @@ export const Container = styled.li`
   position: relative;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
 
   padding: 1rem;
@@ -35,6 +35,45 @@ export const Container = styled.li`
 
     opacity: 0;
     pointer-events: none;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+
+    margin-left: 1rem;
+
+    button {
+      width: 3.125rem;
+      height: 3.125rem;
+
+      border-radius: 4px;
+      background: ${({ theme }) => theme.colors.background};
+      border: 2px solid ${({ theme }) => theme.colors.primary};
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transition: background 200ms;
+
+      svg {
+        stroke: ${({ theme }) => theme.colors.primary};
+        transition: stroke 200ms;
+      }
+
+      & + button {
+        margin-left: 1rem;
+      }
+
+      &:hover {
+        background: ${({ theme }) => theme.colors.primary};
+
+        svg {
+          stroke: ${({ theme }) => theme.colors.background};
+        }
+      }
+    }
   }
 
   div {
@@ -95,6 +134,16 @@ export const Container = styled.li`
           }
         }
       }
+    }
+  }
+
+  @media (max-width: 580px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    section {
+      margin-left: 0;
+      margin-top: 1rem;
     }
   }
 `;

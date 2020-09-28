@@ -11,7 +11,7 @@ export default createGlobalStyle`
   body {
     font-size: 16px;
     -webkit-font-smoothing: antialiased !important;
-    background-color: ${({ theme }) => theme.colors.background};
+    background: ${({ theme }) => theme.colors.background};
   }
 
   #root, html, body{
