@@ -20,9 +20,7 @@ export const GenerateHashArea = styled.div`
 
   form {
     width: 100%;
-
     margin: 0 auto;
-    /* border-bottom: 2px solid ${({ theme }) => theme.colors.primary}; */
 
     span {
       opacity: 0.5;
@@ -40,6 +38,10 @@ export const GenerateHashArea = styled.div`
 
       &:hover {
         background: ${({ theme }) => darken(0.06, theme.colors.secondary)};
+      }
+
+      &:disabled {
+        background: ${({ theme }) => darken(0.06, theme.colors.secondary)}60;
       }
     }
 

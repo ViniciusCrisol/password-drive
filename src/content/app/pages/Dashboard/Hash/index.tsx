@@ -1,10 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { Form } from '@unform/web';
-import { FormHandles } from '@unform/core';
-import { FiShield, FiEyeOff, FiEye, FiEdit2, FiTrash2 } from 'react-icons/fi';
-
-import Input from '../../../../../components/Input';
-import Button from '../../../../../components/Button';
+import axios from 'axios';
+import { mutate as mutateGlobal } from 'swr';
+import { FiEyeOff, FiEye, FiEdit2, FiTrash2 } from 'react-icons/fi';
 
 import { Container } from './styles';
 
@@ -15,16 +12,7 @@ interface HashData {
 const Hash: React.FC<HashData> = ({ hash }) => {
   const [showHash, setShowHash] = useState(false);
 
-  const formRef = useRef<FormHandles>(null);
   const passwordValue = useRef<HTMLInputElement>(null);
-
-  const handleSubmitForm = useCallback(async (data: Object) => {
-    try {
-      console.log(data);
-    } catch (err) {
-      console.log(err.response.data.message);
-    }
-  }, []);
 
   const handleTogleHash = useCallback(() => {
     setShowHash(prevState => !prevState);
@@ -33,22 +21,30 @@ const Hash: React.FC<HashData> = ({ hash }) => {
   const handleCopyValue = useCallback(() => {
     passwordValue.current.select();
     document.execCommand('copy');
-  }, [formRef]);
+  }, []);
+
+  const handleDelete = useCallback(async () => {
+    mutateGlobal(
+      `/api/list-hashes`,
+      (prevState: Hash[]) =>
+        prevState.filter(prevHash => prevHash.id !== hash.id),
+      true
+    );
+
+    await axios.post('/api/delete-hash', { id: hash.id });
+  }, []);
 
   return (
     <Container>
       <div>
         <h1>{hash.website}</h1>
-        <Form
-          ref={formRef}
-          onSubmit={data => handleSubmitForm(data)}
-          initialData={{ password: hash.password }}
-        >
-          <Input
-            readOnly={false}
+
+        <section>
+          <input
+            readOnly
             maxLength={16}
             name="password"
-            icon={FiShield}
+            value={hash.password}
             type={showHash ? 'text' : 'password'}
           />
 
@@ -59,7 +55,7 @@ const Hash: React.FC<HashData> = ({ hash }) => {
           <button type="button" onClick={handleCopyValue}>
             Copy!
           </button>
-        </Form>
+        </section>
       </div>
 
       <section>
@@ -67,7 +63,7 @@ const Hash: React.FC<HashData> = ({ hash }) => {
           <FiEdit2 size={19} />
         </button>
 
-        <button type="button">
+        <button type="button" onClick={handleDelete}>
           <FiTrash2 size={19} />
         </button>
       </section>

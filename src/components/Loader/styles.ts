@@ -8,10 +8,10 @@ export const Container = styled.div`
   > div {
     width: 12px;
     height: 12px;
-    background:   background: ${({ theme }) => theme.colors.background};
-;
 
     border-radius: 100%;
+    background: ${({ theme }) => theme.colors.background};
+
     display: inline-block;
     animation: sk-bouncedelay 1.4s infinite ease-in-out both;
     -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import crypto from 'crypto-random-string';
-import { mutate as mutateGlobal } from 'swr';
 import { FiLink2, FiShield, FiEye, FiEyeOff } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';
