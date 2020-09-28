@@ -15,6 +15,7 @@ const Hash: React.FC<HashData> = ({ hash }) => {
   const [showHash, setShowHash] = useState(false);
 
   const formRef = useRef<FormHandles>(null);
+  const passwordValue = useRef<HTMLInputElement>(null);
 
   const handleSubmitForm = useCallback(async (data: Object) => {
     try {
@@ -28,6 +29,11 @@ const Hash: React.FC<HashData> = ({ hash }) => {
     setShowHash(prevState => !prevState);
   }, [showHash]);
 
+  const handleCopyValue = useCallback(() => {
+    passwordValue.current.select();
+    document.execCommand('copy');
+  }, [formRef]);
+
   return (
     <Container>
       <div>
@@ -38,6 +44,7 @@ const Hash: React.FC<HashData> = ({ hash }) => {
           initialData={{ password: hash.password }}
         >
           <Input
+            readOnly
             maxLength={16}
             name="password"
             icon={FiShield}
@@ -48,11 +55,13 @@ const Hash: React.FC<HashData> = ({ hash }) => {
             {showHash ? <FiEyeOff size={19} /> : <FiEye size={19} />}
           </button>
 
-          <button type="button" onClick={() => console.log('')}>
+          <button type="button" onClick={handleCopyValue}>
             Copy!
           </button>
         </Form>
       </div>
+
+      <input type="text" readOnly ref={passwordValue} value={hash.password} />
     </Container>
   );
 };
