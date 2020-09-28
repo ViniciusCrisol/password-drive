@@ -51,7 +51,11 @@ export default async (request: NowRequest, response: NowResponse) => {
     const serializedHashes = hashes.map(siteHash => {
       const { created_at, website, _id, hash } = siteHash;
 
-      const decipher = crypto.createDecipher('aes256', 'chaves');
+      const decipher = crypto.createDecipher(
+        process.env.HASH_STYLE,
+        process.env.HASH_KEY
+      );
+
       decipher.update(hash, 'hex');
 
       return {

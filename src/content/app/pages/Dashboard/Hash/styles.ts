@@ -8,10 +8,10 @@ export const Container = styled.li`
 
   padding: 1rem;
   border-radius: 4px;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primaryLight};
 
   & + li {
-    margin-top: 2rem;
+    margin-top: 1.4rem;
   }
 
   h1 {
@@ -25,6 +25,11 @@ export const Container = styled.li`
 
   div {
     width: 100%;
+    border-color: ${({ theme }) => theme.colors.primary};
+
+    svg {
+      stroke: ${({ theme }) => theme.colors.primary};
+    }
 
     form {
       margin-top: 0.5rem;
@@ -45,8 +50,8 @@ export const Container = styled.li`
 
         margin-top: 0;
         padding: 0 1rem;
-        background: none;
         border-radius: 0;
+        background: ${({ theme }) => theme.colors.background};
 
         border: 2px solid ${({ theme }) => theme.colors.primary};
         border-left: 0;
@@ -63,7 +68,7 @@ export const Container = styled.li`
         & + button {
           width: 4.25rem;
 
-          color: white;
+          color: ${({ theme }) => theme.colors.buttonText};
           font-size: 1rem;
 
           border-radius: 0 4px 4px 0;

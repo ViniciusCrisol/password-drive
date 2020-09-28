@@ -53,7 +53,10 @@ export default async (request: NowRequest, response: NowResponse) => {
       return response.status(401).json({ message: 'Website already hashed.' });
     }
 
-    const cipher = crypto.createCipher('aes256', 'chaves');
+    const cipher = crypto.createCipher(
+      process.env.HASH_STYLE,
+      process.env.HASH_KEY
+    );
     cipher.update(password.trim());
 
     await hashesCollection.insertOne({

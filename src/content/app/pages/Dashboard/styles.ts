@@ -22,8 +22,7 @@ export const GenerateHashArea = styled.div`
     width: 100%;
 
     margin: 0 auto;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+    /* border-bottom: 2px solid ${({ theme }) => theme.colors.primary}; */
 
     span {
       opacity: 0.5;
@@ -36,7 +35,12 @@ export const GenerateHashArea = styled.div`
 
     > button {
       margin-top: 0.5rem;
-      background: ${({ theme }) => theme.colors.primary};
+      background: ${({ theme }) => theme.colors.secondary};
+      box-shadow: 0px 10px 9px -10px rgba(171, 171, 171, 0.4);
+
+      &:hover {
+        background: ${({ theme }) => darken(0.06, theme.colors.secondary)};
+      }
     }
 
     div {
@@ -84,7 +88,7 @@ export const GenerateHashArea = styled.div`
         & + button {
           width: 4.25rem;
 
-          color: white;
+          color: ${({ theme }) => theme.colors.buttonText};
           font-size: 1rem;
 
           border-radius: 0 4px 4px 0;

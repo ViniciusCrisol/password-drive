@@ -23,16 +23,19 @@ interface CreateHashData {
 
 const Dashboard: React.FC = () => {
   const { data: hashes } = useFetch<Hash[]>('/api/list-hashes');
-  const [showHash, setShowHash] = useState(false);
-
   const formRef = useRef<FormHandles>(null);
 
+  const [showHash, setShowHash] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const handleSubmitForm = useCallback(async (data: CreateHashData) => {
+    setLoading(true);
     try {
       await axios.post('/api/create-hash', data);
     } catch (err) {
       console.log(err.response.data.message);
     }
+    setLoading(false);
   }, []);
 
   const handleGenerateHash = useCallback(() => {
@@ -78,17 +81,13 @@ const Dashboard: React.FC = () => {
               </button>
             </section>
 
-            <Button type="submit">Create Register</Button>
+            <Button loading={loading} type="submit">
+              Create Register
+            </Button>
           </Form>
         </GenerateHashArea>
 
         <HashList>
-          {hashes.map(hash => (
-            <Hash key={hash.id} hash={hash} />
-          ))}
-          {hashes.map(hash => (
-            <Hash key={hash.id} hash={hash} />
-          ))}
           {hashes.map(hash => (
             <Hash key={hash.id} hash={hash} />
           ))}
