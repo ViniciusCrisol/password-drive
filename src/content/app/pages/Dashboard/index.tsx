@@ -14,7 +14,7 @@ import Button from '../../../../components/Button';
 
 import Hash from './Hash';
 
-import { Container, GenerateHashArea, HashList } from './styles';
+import { Container, GenerateHashArea, HashList, Loader } from './styles';
 
 interface CreateHashData {
   website: string;
@@ -35,6 +35,10 @@ const Dashboard: React.FC = () => {
       await axios.post('/api/create-hash', data);
       const response = await axios.get('/api/list-hashes');
 
+      const generatedHash = crypto(hashConfig);
+
+      formRef.current.setFieldValue('password', generatedHash);
+
       mutate(response.data, false);
     } catch (err) {
       console.log(err.response.data.message);
@@ -51,10 +55,6 @@ const Dashboard: React.FC = () => {
   const handleTogleHash = useCallback(() => {
     setShowHash(prevState => !prevState);
   }, [showHash]);
-
-  if (!hashes) {
-    return <h1>loading...</h1>;
-  }
 
   return (
     <Layout>
@@ -92,11 +92,19 @@ const Dashboard: React.FC = () => {
           </Form>
         </GenerateHashArea>
 
-        <HashList>
-          {hashes.map(hash => (
-            <Hash key={hash.id} hash={hash} />
-          ))}
-        </HashList>
+        {hashes ? (
+          <HashList>
+            {hashes.map(hash => (
+              <Hash key={hash.id} hash={hash} />
+            ))}
+          </HashList>
+        ) : (
+          <>
+            <Loader />
+            <Loader />
+            <Loader />
+          </>
+        )}
       </Container>
     </Layout>
   );

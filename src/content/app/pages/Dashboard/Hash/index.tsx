@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import axios from 'axios';
 import { mutate as mutateGlobal } from 'swr';
-import { FiEyeOff, FiEye, FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { FiEyeOff, FiEye, FiTrash2 } from 'react-icons/fi';
 
 import { Container } from './styles';
 
@@ -36,39 +36,37 @@ const Hash: React.FC<HashData> = ({ hash }) => {
 
   return (
     <Container>
-      <div>
-        <h1>{hash.website}</h1>
+      <main>
+        <div>
+          <h1>{hash.website}</h1>
+
+          <section>
+            <input
+              readOnly
+              maxLength={16}
+              name="password"
+              value={hash.password}
+              type={showHash ? 'text' : 'password'}
+            />
+
+            <button type="button" onClick={handleTogleHash}>
+              {showHash ? <FiEyeOff size={19} /> : <FiEye size={19} />}
+            </button>
+
+            <button type="button" onClick={handleCopyValue}>
+              Copy!
+            </button>
+          </section>
+        </div>
 
         <section>
-          <input
-            readOnly
-            maxLength={16}
-            name="password"
-            value={hash.password}
-            type={showHash ? 'text' : 'password'}
-          />
-
-          <button type="button" onClick={handleTogleHash}>
-            {showHash ? <FiEyeOff size={19} /> : <FiEye size={19} />}
-          </button>
-
-          <button type="button" onClick={handleCopyValue}>
-            Copy!
+          <button type="button" onClick={handleDelete}>
+            <FiTrash2 size={19} />
           </button>
         </section>
-      </div>
 
-      <section>
-        <button type="button">
-          <FiEdit2 size={19} />
-        </button>
-
-        <button type="button" onClick={handleDelete}>
-          <FiTrash2 size={19} />
-        </button>
-      </section>
-
-      <input type="text" readOnly ref={passwordValue} value={hash.password} />
+        <input type="text" readOnly ref={passwordValue} value={hash.password} />
+      </main>
     </Container>
   );
 };

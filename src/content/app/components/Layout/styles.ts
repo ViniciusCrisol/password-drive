@@ -21,23 +21,5 @@ export const Header = styled.header`
       cursor: pointer;
       font-size: 1.2rem;
     }
-
-    section {
-      display: flex;
-      align-items: center;
-
-      a {
-        color: ${({ theme }) => theme.colors.buttonText};
-        font-weight: bold;
-        text-decoration: none;
-
-        transition: color 200ms;
-
-        &:hover,
-        &.active {
-          color: ${({ theme }) => theme.colors.buttonText};
-        }
-      }
-    }
   }
 `;

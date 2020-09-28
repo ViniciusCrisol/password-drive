@@ -85,9 +85,8 @@ export const LeftSide = styled.div`
     width: max-content;
 
     padding: 2rem;
-    background:   background: ${({ theme }) => theme.colors.background};
-;
     border-radius: 4px;
+    background: ${({ theme }) => theme.colors.background};
 
     h1 {
       font-size: 1.625rem;

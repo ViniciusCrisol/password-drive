@@ -110,3 +110,25 @@ export const GenerateHashArea = styled.div`
 export const HashList = styled.ul`
   padding: 2rem 1rem;
 `;
+
+export const Loader = styled.div`
+  width: 96%;
+  height: 7.113rem;
+
+  margin: 1rem 1rem 0;
+  border-radius: 4px;
+
+  background: linear-gradient(-90deg, #e7edf1 0%, #f8f8f8 50%, #e7edf1 100%);
+  background-size: 400% 400%;
+
+  animation: shimmer 1.2s ease-in-out infinite;
+
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: -135% 0%;
+    }
+  }
+`;
