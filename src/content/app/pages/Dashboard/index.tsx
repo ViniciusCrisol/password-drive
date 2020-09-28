@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import crypto from 'crypto-random-string';
+import { mutate as mutateGlobal } from 'swr';
 import { FiLink2, FiShield, FiEye, FiEyeOff } from 'react-icons/fi';
 
 import hashConfig from '../../../../config/hashConfig';
@@ -22,7 +23,7 @@ interface CreateHashData {
 }
 
 const Dashboard: React.FC = () => {
-  const { data: hashes } = useFetch<Hash[]>('/api/list-hashes');
+  const { data: hashes, mutate } = useFetch<Hash[]>('/api/list-hashes');
   const formRef = useRef<FormHandles>(null);
 
   const [showHash, setShowHash] = useState(false);
@@ -31,7 +32,11 @@ const Dashboard: React.FC = () => {
   const handleSubmitForm = useCallback(async (data: CreateHashData) => {
     setLoading(true);
     try {
+      mutate();
       await axios.post('/api/create-hash', data);
+      const response = await axios.get('/api/list-hashes');
+
+      mutate(response.data, false);
     } catch (err) {
       console.log(err.response.data.message);
     }
