@@ -19,6 +19,7 @@ export const Container = styled.li`
   h1 {
     opacity: 0.5;
     padding-left: 4px;
+    margin-bottom: 0.8rem;
 
     font-size: 1rem;
     font-weight: normal;
@@ -48,7 +49,7 @@ export const Container = styled.li`
       height: 3.125rem;
 
       border-radius: 4px;
-      background: ${({ theme }) => theme.colors.background};
+      background: ${({ theme }) => theme.colors.primaryLight};
       border: 2px solid ${({ theme }) => theme.colors.primary};
 
       display: flex;

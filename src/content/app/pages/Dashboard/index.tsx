@@ -73,6 +73,7 @@ const Dashboard: React.FC = () => {
                 maxLength={16}
                 name="password"
                 icon={FiShield}
+                placeholder="Password"
                 type={showHash ? 'text' : 'password'}
               />
 

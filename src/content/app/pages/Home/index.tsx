@@ -24,8 +24,11 @@ const Home: React.FC = () => {
 
   const [hash, setHash] = useState(crypto(hashConfig));
   const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSignIn = useCallback(async (data: SignData) => {
+    setLoading(true);
+
     signIn(data);
   }, []);
 
@@ -59,7 +62,9 @@ const Home: React.FC = () => {
             </a>
           </Link>
 
-          <Button type="submit">Access</Button>
+          <Button loading={loading} type="submit">
+            Access
+          </Button>
         </Form>
 
         <Link href="/register">
