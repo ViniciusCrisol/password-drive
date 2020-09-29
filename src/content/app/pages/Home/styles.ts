@@ -80,7 +80,7 @@ export const LeftSide = styled.div`
   }
 `;
 
-export const RightSide = styled.div<HashButtonProps>`
+export const RightSide = styled.div`
   width: 50%;
   height: 100vh;
 
@@ -92,90 +92,90 @@ export const RightSide = styled.div<HashButtonProps>`
   flex-direction: column;
   justify-content: center;
 
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const GenerateHash = styled.div<HashButtonProps>`
+  width: 90%;
+  position: relative;
+
+  padding: 4rem 2rem;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.colors.background};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
   div {
-    width: 90%;
-    position: relative;
-
-    padding: 4rem 2rem;
-    border-radius: 4px;
-    background: ${({ theme }) => theme.colors.background};
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    input {
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      width: 100%;
-      height: 100%;
-
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    section {
-      h1 {
-        font-size: 1.625rem;
-        color: ${({ theme }) => theme.colors.secondary};
-      }
-
-      span {
-        opacity: 0.5;
-        font-size: 0.9rem;
-      }
-    }
-
-    button {
-      height: 2.125rem;
-      width: 8rem;
-
-      background: none;
-      border: 2px solid ${({ theme }) => theme.colors.secondary};
-
-      font-size: 1.1rem;
+    h1 {
+      font-size: 1.625rem;
       color: ${({ theme }) => theme.colors.secondary};
+    }
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      transition: color 200ms, transform 200ms, border 200ms;
-
-      svg {
-        margin-right: 1rem;
-        stroke: ${({ theme }) => theme.colors.secondary};
-
-        transition: stroke 200ms;
-      }
-
-      &:hover {
-        transform: scale(1.02);
-        color: ${({ theme }) => theme.colors.primary};
-        border-color: ${({ theme }) => theme.colors.primary};
-
-        svg {
-          stroke: ${({ theme }) => theme.colors.primary};
-        }
-      }
-
-      ${({ copied }) =>
-        copied &&
-        css`
-          color: ${({ theme }) => theme.colors.success};
-          border-color: ${({ theme }) => theme.colors.success};
-
-          svg {
-            display: block;
-            stroke: ${({ theme }) => theme.colors.success};
-          }
-        `}
+    span {
+      opacity: 0.5;
+      font-size: 0.9rem;
     }
   }
 
-  @media (max-width: 1024px) {
-    display: none;
+  button {
+    width: 8rem;
+    height: 2.125rem;
+
+    background: none;
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
+
+    font-size: 1.1rem;
+    color: ${({ theme }) => theme.colors.secondary};
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: color 200ms, transform 200ms, border 200ms;
+
+    svg {
+      margin-right: 1rem;
+      stroke: ${({ theme }) => theme.colors.secondary};
+
+      transition: stroke 200ms;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+      color: ${({ theme }) => theme.colors.primary};
+      border-color: ${({ theme }) => theme.colors.primary};
+
+      svg {
+        stroke: ${({ theme }) => theme.colors.primary};
+      }
+    }
+
+    ${({ copied }) =>
+      copied &&
+      css`
+        color: ${({ theme }) => theme.colors.success};
+        border-color: ${({ theme }) => theme.colors.success};
+
+        svg {
+          display: block;
+          stroke: ${({ theme }) => theme.colors.success};
+        }
+      `}
   }
 `;

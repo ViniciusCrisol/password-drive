@@ -14,7 +14,7 @@ import Logo from '../../../../components/Logo';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
-import { Container, LeftSide, RightSide } from './styles';
+import { Container, LeftSide, RightSide, GenerateHash } from './styles';
 
 const Home: React.FC = () => {
   const { signIn } = useAuth();
@@ -55,13 +55,6 @@ const Home: React.FC = () => {
             placeholder="Password"
           />
 
-          <Link href="/register">
-            <a>
-              <FiInfo size={20} />
-              Forgot Password
-            </a>
-          </Link>
-
           <Button loading={loading} type="submit">
             Access
           </Button>
@@ -74,15 +67,15 @@ const Home: React.FC = () => {
         </Link>
       </LeftSide>
 
-      <RightSide copied={copied}>
-        <div>
-          <section>
+      <RightSide>
+        <GenerateHash copied={copied}>
+          <div>
             <h1>Keep it safe.</h1>
             <span>
               Click to generate and <br />
               copy a new hash!
             </span>
-          </section>
+          </div>
 
           <button onClick={handleGenerateHash}>
             {copied ? <FiShield size={20} /> : <FiShieldOff size={20} />}
@@ -90,7 +83,7 @@ const Home: React.FC = () => {
           </button>
 
           <input type="text" readOnly ref={hashRef} value={hash} />
-        </div>
+        </GenerateHash>
       </RightSide>
     </Container>
   );
