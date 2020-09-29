@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import ButtonContainer from '../../../../components/Button';
 
 interface HashButtonProps {
   copied: boolean;
@@ -178,4 +179,8 @@ export const GenerateHash = styled.div<HashButtonProps>`
         }
       `}
   }
+`;
+
+export const Button = styled(ButtonContainer)`
+  margin: 1.5rem 0;
 `;

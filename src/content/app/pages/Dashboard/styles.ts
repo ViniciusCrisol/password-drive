@@ -93,6 +93,7 @@ export const GenerateHashArea = styled.div`
           color: ${({ theme }) => theme.colors.buttonText};
           font-size: 1rem;
 
+          border: 0;
           border-radius: 0 4px 4px 0;
           background: ${({ theme }) => theme.colors.primary};
 

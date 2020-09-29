@@ -3,7 +3,7 @@ import axios from 'axios';
 import { mutate as mutateGlobal } from 'swr';
 import { FiEyeOff, FiEye, FiTrash2 } from 'react-icons/fi';
 
-import { Container } from './styles';
+import { Container, SquareButton, Content } from './styles';
 
 interface HashData {
   hash: Hash;
@@ -36,8 +36,8 @@ const Hash: React.FC<HashData> = ({ hash }) => {
 
   return (
     <Container>
-      <main>
-        <div>
+      <div>
+        <Content>
           <h1>{hash.website}</h1>
 
           <section>
@@ -57,16 +57,14 @@ const Hash: React.FC<HashData> = ({ hash }) => {
               Copy!
             </button>
           </section>
-        </div>
+        </Content>
 
-        <section>
-          <button type="button" onClick={handleDelete}>
-            <FiTrash2 size={19} />
-          </button>
-        </section>
+        <SquareButton type="button" onClick={handleDelete}>
+          <FiTrash2 size={19} />
+        </SquareButton>
 
         <input type="text" readOnly ref={passwordValue} value={hash.password} />
-      </main>
+      </div>
     </Container>
   );
 };

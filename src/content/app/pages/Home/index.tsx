@@ -12,9 +12,8 @@ import { useAuth } from '../../../../hooks/useAuth';
 
 import Logo from '../../../../components/Logo';
 import Input from '../../../../components/Input';
-import Button from '../../../../components/Button';
 
-import { Container, LeftSide, RightSide, GenerateHash } from './styles';
+import { Container, LeftSide, RightSide, GenerateHash, Button } from './styles';
 
 const Home: React.FC = () => {
   const { signIn } = useAuth();
