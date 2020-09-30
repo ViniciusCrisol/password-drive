@@ -56,57 +56,57 @@ export const Content = styled.div`
     text-transform: capitalize;
     color: ${({ theme }) => theme.colors.primary};
   }
+`;
 
-  section {
+export const InputContainer = styled.div`
+  display: flex;
+
+  input {
+    width: 100%;
+    height: 3.125rem;
+
+    padding: 0 1rem;
+    border-radius: 4px 0 0 4px;
+    background: ${({ theme }) => theme.colors.background};
+
+    border: 2px solid ${({ theme }) => theme.colors.primary};
+    border-right: 0;
+  }
+
+  button {
+    width: 3.25rem;
+    height: 3.125rem;
+
+    margin-top: 0;
+    padding: 0 1rem;
+    background: ${({ theme }) => theme.colors.background};
+
+    border: 2px solid ${({ theme }) => theme.colors.primary};
+    border-left: 0;
+    border-right: 0;
+
     display: flex;
+    align-items: center;
+    justify-content: center;
 
-    input {
-      width: 100%;
-      height: 3.125rem;
-
-      padding: 0 1rem;
-      border-radius: 4px 0 0 4px;
-      background: ${({ theme }) => theme.colors.background};
-
-      border: 2px solid ${({ theme }) => theme.colors.primary};
-      border-right: 0;
+    svg {
+      stroke: ${({ theme }) => theme.colors.text}45;
     }
 
-    button {
-      width: 3.25rem;
-      height: 3.125rem;
+    & + button {
+      width: 4.25rem;
 
-      margin-top: 0;
-      padding: 0 1rem;
-      background: ${({ theme }) => theme.colors.background};
+      font-size: 1rem;
+      color: ${({ theme }) => theme.colors.buttonText};
 
-      border: 2px solid ${({ theme }) => theme.colors.primary};
-      border-left: 0;
-      border-right: 0;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      background: ${({ theme }) => theme.colors.primary};
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transition: background 200ms;
 
-      svg {
-        stroke: ${({ theme }) => theme.colors.text}45;
-      }
-
-      & + button {
-        width: 4.25rem;
-
-        font-size: 1rem;
-        color: ${({ theme }) => theme.colors.buttonText};
-
-        border: none;
-        border-radius: 0 4px 4px 0;
-        background: ${({ theme }) => theme.colors.primary};
-
-        transition: background 200ms;
-
-        &:hover {
-          background: ${({ theme }) => darken(0.06, theme.colors.primary)};
-        }
+      &:hover {
+        background: ${({ theme }) => darken(0.06, theme.colors.primary)};
       }
     }
   }

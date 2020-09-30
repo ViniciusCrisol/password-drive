@@ -13,8 +13,9 @@ import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
 import Hash from './Hash';
+import Loader from './Loader';
 
-import { Container, GenerateHashArea, HashList, Loader } from './styles';
+import { Container, CreateHashArea, HashList, InputContainer } from './styles';
 
 interface CreateHashData {
   website: string;
@@ -59,16 +60,16 @@ const Dashboard: React.FC = () => {
   return (
     <Layout>
       <Container>
-        <GenerateHashArea>
+        <CreateHashArea>
           <Form
             ref={formRef}
-            onSubmit={data => handleSubmitForm(data)}
+            onSubmit={handleSubmitForm}
             initialData={{ password: crypto(hashConfig) }}
           >
             <span>Register a new hash</span>
             <Input placeholder="Website name" icon={FiLink2} name="website" />
 
-            <section>
+            <InputContainer>
               <Input
                 maxLength={16}
                 name="password"
@@ -84,27 +85,21 @@ const Dashboard: React.FC = () => {
               <button type="button" onClick={handleGenerateHash}>
                 Hash!
               </button>
-            </section>
+            </InputContainer>
 
             <Button loading={loading} type="submit">
               Create Register
             </Button>
           </Form>
-        </GenerateHashArea>
+        </CreateHashArea>
 
-        {hashes ? (
-          <HashList>
-            {hashes.map(hash => (
-              <Hash key={hash.id} hash={hash} />
-            ))}
-          </HashList>
-        ) : (
-          <>
+        <HashList>
+          {hashes ? (
+            hashes.map(hash => <Hash key={hash.id} hash={hash} />)
+          ) : (
             <Loader />
-            <Loader />
-            <Loader />
-          </>
-        )}
+          )}
+        </HashList>
       </Container>
     </Layout>
   );

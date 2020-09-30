@@ -9,7 +9,7 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const GenerateHashArea = styled.div`
+export const CreateHashArea = styled.div`
   position: sticky;
   z-index: 2;
   top: 0;
@@ -33,16 +33,6 @@ export const GenerateHashArea = styled.div`
 
     > button {
       margin-top: 0.5rem;
-      background: ${({ theme }) => theme.colors.secondary};
-      box-shadow: 0px 10px 9px -10px rgba(171, 171, 171, 0.4);
-
-      &:hover {
-        background: ${({ theme }) => darken(0.06, theme.colors.secondary)};
-      }
-
-      &:disabled {
-        background: ${({ theme }) => darken(0.06, theme.colors.secondary)}60;
-      }
     }
 
     div {
@@ -52,57 +42,56 @@ export const GenerateHashArea = styled.div`
         stroke: ${({ theme }) => theme.colors.primary};
       }
     }
+  }
+`;
 
-    section {
-      margin-top: 0.5rem;
+export const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
 
-      display: flex;
-      align-items: center;
+  div {
+    width: calc(100% - 7.5rem);
 
-      div {
-        width: calc(100% - 7.5rem);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+  }
 
-        border-right: none;
-        border-radius: 4px 0 0 4px;
-      }
+  button {
+    width: 3.25rem;
+    height: 3.125rem;
 
-      button {
-        width: 3.25rem;
-        height: 3.125rem;
+    margin-top: 0;
+    padding: 0 1rem;
+    background: none;
+    border-radius: 0;
 
-        margin-top: 0;
-        padding: 0 1rem;
-        background: none;
-        border-radius: 0;
+    border: 2px solid ${({ theme }) => theme.colors.primary};
+    border-left: 0;
+    border-right: 0;
 
-        border: 2px solid ${({ theme }) => theme.colors.primary};
-        border-left: 0;
-        border-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    svg {
+      stroke: ${({ theme }) => theme.colors.text}45;
+    }
 
-        svg {
-          stroke: ${({ theme }) => theme.colors.text}45;
-        }
+    & + button {
+      width: 4.25rem;
 
-        & + button {
-          width: 4.25rem;
+      color: ${({ theme }) => theme.colors.buttonText};
+      font-size: 1rem;
 
-          color: ${({ theme }) => theme.colors.buttonText};
-          font-size: 1rem;
+      border: 0;
+      border-radius: 0 4px 4px 0;
+      background: ${({ theme }) => theme.colors.primary};
 
-          border: 0;
-          border-radius: 0 4px 4px 0;
-          background: ${({ theme }) => theme.colors.primary};
+      transition: background 200ms;
 
-          transition: background 200ms;
-
-          &:hover {
-            background: ${({ theme }) => darken(0.06, theme.colors.primary)};
-          }
-        }
+      &:hover {
+        background: ${({ theme }) => darken(0.06, theme.colors.primary)};
       }
     }
   }
@@ -110,26 +99,4 @@ export const GenerateHashArea = styled.div`
 
 export const HashList = styled.ul`
   padding: 2rem 1rem;
-`;
-
-export const Loader = styled.div`
-  width: 96%;
-  height: 7.113rem;
-
-  margin: 1rem 1rem 0;
-  border-radius: 4px;
-
-  background: linear-gradient(-90deg, #e7edf1 0%, #f8f8f8 50%, #e7edf1 100%);
-  background-size: 400% 400%;
-
-  animation: shimmer 1.2s ease-in-out infinite;
-
-  @keyframes shimmer {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: -135% 0%;
-    }
-  }
 `;
