@@ -26,7 +26,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     const db = await connectToDatabse(process.env.MONGO_CONNECTION);
     const collection = db.collection('users');
 
-    const user = await collection.findOne({ code });
+    const user = await collection.findOne({ code: code.toLowerCase().trim() });
 
     if (!user) {
       return response
