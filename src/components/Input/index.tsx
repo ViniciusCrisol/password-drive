@@ -5,8 +5,8 @@ import { useField } from '@unform/core';
 import { Container } from './styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  name: string;
   icon: React.ComponentType<IconBaseProps>;
+  name: string;
 }
 
 const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {

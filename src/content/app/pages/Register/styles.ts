@@ -45,7 +45,7 @@ export const RightSide = styled.div`
     width: unset;
     display: inline-block;
 
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 
     opacity: 0.5;
     cursor: pointer;

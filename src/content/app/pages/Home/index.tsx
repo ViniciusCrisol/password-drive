@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
 import Link from 'next/link';
-
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import crypto from 'crypto-random-string';
@@ -60,9 +59,7 @@ const Home: React.FC = () => {
         </Form>
 
         <Link href="/register">
-          <a className="create-account">
-            Don't have an account? Create a here.
-          </a>
+          <a>Don't have an account? Create a here.</a>
         </Link>
       </LeftSide>
 

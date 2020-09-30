@@ -63,7 +63,6 @@ export const InputContainer = styled.div`
 
     margin-top: 0;
     padding: 0 1rem;
-    background: none;
     border-radius: 0;
 
     border: 2px solid ${({ theme }) => theme.colors.primary};

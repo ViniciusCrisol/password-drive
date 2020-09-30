@@ -10,16 +10,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  children,
-  outline,
   loading,
+  outline,
+  children,
   ...rest
-}) => {
-  return (
-    <Container disabled={loading} isOutlined={!!outline} {...rest}>
-      {loading ? <Loader /> : <>{children}</>}
-    </Container>
-  );
-};
+}) => (
+  <Container disabled={loading} isOutlined={!!outline} {...rest}>
+    {loading ? <Loader /> : <>{children}</>}
+  </Container>
+);
 
 export default Button;

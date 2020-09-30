@@ -28,6 +28,7 @@ export const Container = styled.li`
 
       width: 100%;
       height: 100%;
+
       opacity: 0;
       pointer-events: none;
     }

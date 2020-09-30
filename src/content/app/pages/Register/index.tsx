@@ -1,8 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-import axios from 'axios';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiKey, FiLock, FiUser } from 'react-icons/fi';
@@ -25,15 +24,21 @@ const Register: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleSignIn = useCallback(async (data: SignUpData) => {
-    try {
-      await axios.post('/api/register', data);
+  const handleSignIn = useCallback(
+    async (data: SignUpData) => {
+      try {
+        setLoading(true);
+        await axios.post('/api/register', data);
 
-      router.push('/');
-    } catch (err) {
-      console.log(err.response.data.message);
-    }
-  }, []);
+        router.push('/');
+      } catch (err) {
+        console.log(err.response.data.message);
+
+        setLoading(false);
+      }
+    },
+    [setLoading]
+  );
 
   return (
     <Container>

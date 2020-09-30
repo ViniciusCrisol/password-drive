@@ -5,8 +5,8 @@ import { FormHandles } from '@unform/core';
 import crypto from 'crypto-random-string';
 import { FiLink2, FiShield, FiEye, FiEyeOff } from 'react-icons/fi';
 
-import hashConfig from '../../../../config/hashConfig';
 import { useFetch } from '../../../../hooks/useFetch';
+import hashConfig from '../../../../config/hashConfig';
 
 import Layout from '../../components/Layout';
 import Input from '../../../../components/Input';

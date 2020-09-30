@@ -21,10 +21,6 @@ export const LeftSide = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
-    width: 100%;
-  }
-
   h1 {
     font-size: 2.5rem;
     margin-bottom: 4rem;
@@ -32,37 +28,16 @@ export const LeftSide = styled.div`
   }
 
   a {
-    margin: 1.5rem 0;
-    margin-left: auto;
-    width: max-content;
-
-    opacity: 0.5;
-    cursor: pointer;
+    margin-top: 1rem;
     font-size: 1.125rem;
     text-decoration: none;
 
-    display: flex;
-    align-items: center;
-
-    &.create-account {
-      width: unset;
-      display: inline-block;
-
-      margin-top: 2rem;
-      margin-left: unset;
-    }
-
-    svg {
-      margin-right: 0.5rem;
-    }
+    opacity: 0.5;
+    display: inline-block;
 
     &:hover {
       opacity: 1;
       color: ${({ theme }) => theme.colors.primary};
-
-      svg {
-        stroke: ${({ theme }) => theme.colors.primary};
-      }
     }
   }
 
@@ -78,6 +53,10 @@ export const LeftSide = styled.div`
     width: 100%;
     margin-top: 4rem;
     max-width: 30.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
   }
 `;
 
@@ -138,11 +117,9 @@ export const GenerateHash = styled.div<HashButtonProps>`
     width: 8rem;
     height: 2.125rem;
 
-    background: none;
-    border: 2px solid ${({ theme }) => theme.colors.secondary};
-
     font-size: 1.1rem;
     color: ${({ theme }) => theme.colors.secondary};
+    border: 2px solid ${({ theme }) => theme.colors.secondary};
 
     display: flex;
     align-items: center;
