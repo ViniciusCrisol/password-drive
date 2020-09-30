@@ -28,7 +28,6 @@ export const Container = styled.li`
 
       width: 100%;
       height: 100%;
-
       opacity: 0;
       pointer-events: none;
     }
@@ -66,6 +65,7 @@ export const InputContainer = styled.div`
     width: 100%;
     height: 3.125rem;
 
+    font-size: 1rem;
     padding: 0 1rem;
     border-radius: 4px 0 0 4px;
     background: ${({ theme }) => theme.colors.background};
@@ -74,7 +74,7 @@ export const InputContainer = styled.div`
     border-right: 0;
   }
 
-  button {
+  > button {
     width: 3.25rem;
     height: 3.125rem;
 

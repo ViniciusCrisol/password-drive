@@ -41,6 +41,12 @@ export const CreateHashArea = styled.div`
       svg {
         stroke: ${({ theme }) => theme.colors.primary};
       }
+
+      button {
+        svg {
+          stroke: ${({ theme }) => theme.colors.text}45;
+        }
+      }
     }
   }
 `;
@@ -50,7 +56,7 @@ export const InputContainer = styled.div`
   align-items: center;
   margin-top: 0.5rem;
 
-  div {
+  > div {
     width: calc(100% - 7.5rem);
 
     border-right: none;
@@ -72,10 +78,6 @@ export const InputContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    svg {
-      stroke: ${({ theme }) => theme.colors.text}45;
-    }
 
     & + button {
       width: 4.25rem;
