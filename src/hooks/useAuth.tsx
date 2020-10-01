@@ -39,7 +39,7 @@ const UserProvider: React.FC = ({ children }) => {
       router.push('/dashboard');
       setData({ token, name });
     } catch (err) {
-      console.log(err);
+      alert(err.response.data.message);
     }
   }, []);
 

@@ -41,7 +41,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     });
 
     if (!userExists) {
-      return response.status(401).json({ message: 'User does not exists.' });
+      return response.status(404).json({ message: 'User does not exists.' });
     }
 
     const hashes = await hashesCollection

@@ -27,12 +27,18 @@ const Register: React.FC = () => {
   const handleSignIn = useCallback(
     async (data: SignUpData) => {
       try {
-        setLoading(true);
-        await axios.post('/api/register', data);
+        const { code, confirm_password, password, name } = data;
 
-        router.push('/');
+        if (!code || !confirm_password || !password || !name) {
+          alert('Validation fails.');
+        } else {
+          setLoading(true);
+          await axios.post('/api/register', data);
+
+          router.push('/');
+        }
       } catch (err) {
-        console.log(err.response.data.message);
+        alert(err.response.data.message);
 
         setLoading(false);
       }

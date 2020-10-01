@@ -32,6 +32,12 @@ const Dashboard: React.FC = () => {
   const handleSubmitForm = useCallback(async (data: CreateHashData) => {
     setLoading(true);
     try {
+      const { password, website } = data;
+
+      if (!password || !website) {
+        throw new Error('Validation fails.');
+      }
+
       mutate();
       await axios.post('/api/create-hash', data);
       const response = await axios.get('/api/list-hashes');
@@ -42,7 +48,11 @@ const Dashboard: React.FC = () => {
 
       mutate(response.data, false);
     } catch (err) {
-      console.log(err.response.data.message);
+      if (err instanceof Error) {
+        alert(String(err).split(':')[1].trim());
+      } else {
+        alert(err.response.data.message);
+      }
     }
     setLoading(false);
   }, []);

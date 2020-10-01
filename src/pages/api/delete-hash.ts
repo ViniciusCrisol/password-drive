@@ -1,7 +1,5 @@
 import { NowRequest, NowResponse } from '@vercel/node';
 import { MongoClient, Db, ObjectID } from 'mongodb';
-import { decode } from 'jsonwebtoken';
-import crypto from 'crypto';
 import url from 'url';
 
 let cachedDb: Db = null;
@@ -23,7 +21,7 @@ export default async (request: NowRequest, response: NowResponse) => {
   const { id } = request.body;
 
   if (!id) {
-    return response.status(401).json({ message: 'Validation fails.' });
+    return response.status(400).json({ message: 'Validation fails.' });
   }
 
   try {
@@ -35,7 +33,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     });
 
     if (!foundedHash) {
-      return response.status(401).json({ message: 'Website not founded.' });
+      return response.status(404).json({ message: 'Website not founded.' });
     }
 
     await hashesCollection.findOneAndDelete(foundedHash);

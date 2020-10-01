@@ -23,7 +23,7 @@ export default async (request: NowRequest, response: NowResponse) => {
 
   if (confirm_password !== password) {
     return response
-      .status(401)
+      .status(400)
       .json({ message: 'Passwords does not matches.' });
   }
 
@@ -34,7 +34,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     const userExists = await collection.findOne({ code });
 
     if (userExists) {
-      return response.status(401).json({ message: 'Code already in use.' });
+      return response.status(400).json({ message: 'Code already in use.' });
     }
 
     const hashedPassword = await hash(password.trim(), 12);

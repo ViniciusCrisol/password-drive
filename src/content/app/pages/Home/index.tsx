@@ -26,8 +26,8 @@ const Home: React.FC = () => {
 
   const handleSignIn = useCallback(async (data: SignData) => {
     setLoading(true);
-
     signIn(data);
+    setLoading(false);
   }, []);
 
   const handleGenerateHash = useCallback(() => {

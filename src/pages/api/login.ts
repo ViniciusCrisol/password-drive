@@ -30,7 +30,7 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     if (!user) {
       return response
-        .status(401)
+        .status(400)
         .json({ message: 'Code/Password combination failed.' });
     }
 

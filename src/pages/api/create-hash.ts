@@ -28,7 +28,7 @@ export default async (request: NowRequest, response: NowResponse) => {
   const userId = decode(token).sub;
 
   if (!website || !password || !userId) {
-    return response.status(401).json({ message: 'Validation fails.' });
+    return response.status(400).json({ message: 'Validation fails.' });
   }
 
   try {
@@ -41,7 +41,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     });
 
     if (!userExists) {
-      return response.status(401).json({ message: 'User does not exists.' });
+      return response.status(404).json({ message: 'User does not exists.' });
     }
 
     const foundedHash = await hashesCollection.findOne({
@@ -50,7 +50,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     });
 
     if (foundedHash) {
-      return response.status(401).json({ message: 'Website already hashed.' });
+      return response.status(400).json({ message: 'Website already hashed.' });
     }
 
     const cipher = crypto.createCipher(
