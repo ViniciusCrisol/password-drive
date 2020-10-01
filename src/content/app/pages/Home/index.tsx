@@ -3,11 +3,10 @@ import Link from 'next/link';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import crypto from 'crypto-random-string';
-import { FiKey, FiLock, FiInfo, FiShield, FiShieldOff } from 'react-icons/fi';
-
-import hashConfig from '../../../../config/hashConfig';
+import { FiKey, FiLock, FiShield, FiShieldOff } from 'react-icons/fi';
 
 import { useAuth } from '../../../../hooks/useAuth';
+import hashConfig from '../../../../config/hashConfig';
 
 import Logo from '../../../../components/Logo';
 import Input from '../../../../components/Input';
