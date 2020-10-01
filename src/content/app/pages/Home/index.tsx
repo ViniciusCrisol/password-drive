@@ -25,7 +25,7 @@ const Home: React.FC = () => {
 
   const handleSignIn = useCallback(async (data: SignData) => {
     setLoading(true);
-    signIn(data);
+    await signIn(data);
     setLoading(false);
   }, []);
 
