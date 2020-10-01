@@ -30,16 +30,6 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 0.5rem;
   }
 
-  ${({ isErrored }) =>
-    isErrored &&
-    css`
-      border-color: ${({ theme }) => theme.colors.error};
-
-      svg {
-        stroke: ${({ theme }) => theme.colors.error};
-      }
-    `}
-
   ${({ isFocused }) =>
     isFocused &&
     css`
