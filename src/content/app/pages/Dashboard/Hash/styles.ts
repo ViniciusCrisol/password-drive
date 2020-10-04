@@ -53,7 +53,7 @@ export const Content = styled.div`
 
     font-size: 1.3rem;
     font-weight: normal;
-    text-transform: capitalize;
+    text-transform: lowercase;
     color: ${({ theme }) => theme.colors.primary};
   }
 `;
